@@ -3801,11 +3801,12 @@ async function fetchCategoriesFromAPI() {
 
 // 24/7 SUPPORT ACTIVITY MODAL HANDLERS
 window.openSupportModal = function() {
+    closeModals();
     const overlay = document.getElementById('supportOverlay');
     const modal = document.getElementById('supportModal');
     if (overlay && modal) {
-        overlay.style.display = 'block';
-        modal.style.display = 'block';
+        overlay.classList.add('active');
+        modal.classList.add('active');
         
         // Auto pre-fill user email if logged in
         const emailInput = document.getElementById('supportUserEmail');
@@ -3816,12 +3817,7 @@ window.openSupportModal = function() {
 };
 
 window.closeSupportModal = function() {
-    const overlay = document.getElementById('supportOverlay');
-    const modal = document.getElementById('supportModal');
-    if (overlay && modal) {
-        overlay.style.display = 'none';
-        modal.style.display = 'none';
-    }
+    closeModals();
 };
 
 window.submitSupportInquiry = function(event) {
@@ -3858,11 +3854,12 @@ window.submitSupportInquiry = function(event) {
 
 // RETURN & REFUND POLICY MODAL HANDLERS
 window.openRefundPolicyModal = function() {
+    closeModals();
     const overlay = document.getElementById('refundOverlay');
     const modal = document.getElementById('refundPolicyModal');
     if (overlay && modal) {
-        overlay.style.display = 'block';
-        modal.style.display = 'block';
+        overlay.classList.add('active');
+        modal.classList.add('active');
 
         // Auto pre-fill user email if logged in
         const emailInput = document.getElementById('refundEmail');
@@ -3873,12 +3870,7 @@ window.openRefundPolicyModal = function() {
 };
 
 window.closeRefundPolicyModal = function() {
-    const overlay = document.getElementById('refundOverlay');
-    const modal = document.getElementById('refundPolicyModal');
-    if (overlay && modal) {
-        overlay.style.display = 'none';
-        modal.style.display = 'none';
-    }
+    closeModals();
 };
 
 window.submitRefundClaim = function(event) {
@@ -3919,10 +3911,10 @@ window.submitRefundClaim = function(event) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const sOverlay = document.getElementById('supportOverlay');
-    if (sOverlay) sOverlay.addEventListener('click', closeSupportModal);
+    if (sOverlay) sOverlay.addEventListener('click', closeModals);
     
     const rOverlay = document.getElementById('refundOverlay');
-    if (rOverlay) rOverlay.addEventListener('click', closeRefundPolicyModal);
+    if (rOverlay) rOverlay.addEventListener('click', closeModals);
 });
 
 async function syncAddCategoryToDB(catId, catName, catIcon) {
