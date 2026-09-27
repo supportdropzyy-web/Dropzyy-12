@@ -625,25 +625,33 @@ button {
     gap: 16px;
     margin-bottom: 16px;
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
 }
 .filter-group {
     display: flex;
     align-items: center;
     gap: 10px;
     flex: 1;
+    min-width: 0;
 }
 .filter-label {
     font-weight: 700;
     font-size: 0.88rem;
     color: var(--text-secondary);
+    white-space: nowrap;
 }
 .category-pills {
     display: flex;
     gap: 8px;
     overflow-x: auto;
+    flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     padding-bottom: 4px;
+    padding-top: 2px;
     width: 100%;
+    min-width: 0;
 }
 .category-pills::-webkit-scrollbar { display: none; }
 .pill-btn {
@@ -655,6 +663,9 @@ button {
     font-weight: 600;
     white-space: nowrap;
     transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    flex-shrink: 0;
 }
 .pill-btn.active {
     background: var(--primary-color);
@@ -668,6 +679,8 @@ button {
     gap: 6px;
     font-size: 0.85rem;
     font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 .sort-dropdown {
     padding: 6px 12px;
@@ -676,6 +689,7 @@ button {
     background: var(--bg-card);
     font-size: 0.85rem;
     color: var(--text-primary);
+    cursor: pointer;
 }
 
 .results-info {
