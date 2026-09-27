@@ -3799,6 +3799,132 @@ async function fetchCategoriesFromAPI() {
     } catch (err) {}
 }
 
+// 24/7 SUPPORT ACTIVITY MODAL HANDLERS
+window.openSupportModal = function() {
+    const overlay = document.getElementById('supportOverlay');
+    const modal = document.getElementById('supportModal');
+    if (overlay && modal) {
+        overlay.style.display = 'block';
+        modal.style.display = 'block';
+        
+        // Auto pre-fill user email if logged in
+        const emailInput = document.getElementById('supportUserEmail');
+        if (emailInput && state.currentUser && state.currentUser.email) {
+            emailInput.value = state.currentUser.email;
+        }
+    }
+};
+
+window.closeSupportModal = function() {
+    const overlay = document.getElementById('supportOverlay');
+    const modal = document.getElementById('supportModal');
+    if (overlay && modal) {
+        overlay.style.display = 'none';
+        modal.style.display = 'none';
+    }
+};
+
+window.submitSupportInquiry = function(event) {
+    if (event) event.preventDefault();
+    const email = document.getElementById('supportUserEmail') ? document.getElementById('supportUserEmail').value.trim() : '';
+    const orderId = document.getElementById('supportOrderId') ? document.getElementById('supportOrderId').value.trim() : '';
+    const msg = document.getElementById('supportMessage') ? document.getElementById('supportMessage').value.trim() : '';
+
+    if (!email || !msg) {
+        showToast('Please enter your email address and message!', 'info');
+        return;
+    }
+
+    if (window.emailjs) {
+        const pKey = window.EMAILJS_PUBLIC_KEY || '_p0PL2iAKyPOfO7Op';
+        const sId = window.EMAILJS_SERVICE_ID || 'default_service';
+        const tId = window.EMAILJS_OTP_TEMPLATE_ID || 'template_j6pyi2d';
+
+        emailjs.send(sId, tId, {
+            to_email: 'supportdropzyy@gmail.com',
+            user_email: email,
+            reply_to: email,
+            order_id: orderId || 'General Inquiry',
+            message: `24/7 Support Inquiry from ${email}. Order: ${orderId}. Message: ${msg}`
+        }, pKey).catch(e => {});
+    }
+
+    showToast(`✅ Support inquiry submitted successfully! Our team will respond to <strong>${email}</strong> shortly.`, 'success');
+    closeSupportModal();
+    if (document.getElementById('supportInquiryForm')) {
+        document.getElementById('supportInquiryForm').reset();
+    }
+};
+
+// RETURN & REFUND POLICY MODAL HANDLERS
+window.openRefundPolicyModal = function() {
+    const overlay = document.getElementById('refundOverlay');
+    const modal = document.getElementById('refundPolicyModal');
+    if (overlay && modal) {
+        overlay.style.display = 'block';
+        modal.style.display = 'block';
+
+        // Auto pre-fill user email if logged in
+        const emailInput = document.getElementById('refundEmail');
+        if (emailInput && state.currentUser && state.currentUser.email) {
+            emailInput.value = state.currentUser.email;
+        }
+    }
+};
+
+window.closeRefundPolicyModal = function() {
+    const overlay = document.getElementById('refundOverlay');
+    const modal = document.getElementById('refundPolicyModal');
+    if (overlay && modal) {
+        overlay.style.display = 'none';
+        modal.style.display = 'none';
+    }
+};
+
+window.submitRefundClaim = function(event) {
+    if (event) event.preventDefault();
+    const email = document.getElementById('refundEmail') ? document.getElementById('refundEmail').value.trim() : '';
+    const orderId = document.getElementById('refundOrderId') ? document.getElementById('refundOrderId').value.trim() : '';
+    const reason = document.getElementById('refundReason') ? document.getElementById('refundReason').value : '';
+    const upiId = document.getElementById('refundUpiId') ? document.getElementById('refundUpiId').value.trim() : '';
+    const details = document.getElementById('refundDetails') ? document.getElementById('refundDetails').value.trim() : '';
+
+    if (!email || !orderId || !reason || !details) {
+        showToast('Please fill out all required fields to submit your refund claim!', 'info');
+        return;
+    }
+
+    if (window.emailjs) {
+        const pKey = window.EMAILJS_PUBLIC_KEY || '_p0PL2iAKyPOfO7Op';
+        const sId = window.EMAILJS_SERVICE_ID || 'default_service';
+        const tId = window.EMAILJS_BILL_TEMPLATE_ID || 'template_1xw8s47';
+
+        emailjs.send(sId, tId, {
+            to_email: 'supportdropzyy@gmail.com',
+            user_email: email,
+            reply_to: email,
+            order_id: orderId,
+            reason: reason,
+            upi_id: upiId || 'Original Payment Method',
+            message: `Return/Refund Claim from ${email}. Order: ${orderId}. Reason: ${reason}. UPI: ${upiId}. Details: ${details}`
+        }, pKey).catch(e => {});
+    }
+
+    showToast(`🎉 Refund Claim for Order <strong>${orderId}</strong> submitted successfully! Expected refund in 1-3 hours.`, 'success');
+    closeRefundPolicyModal();
+    if (document.getElementById('refundClaimForm')) {
+        document.getElementById('refundClaimForm').reset();
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sOverlay = document.getElementById('supportOverlay');
+    if (sOverlay) sOverlay.addEventListener('click', closeSupportModal);
+    
+    const rOverlay = document.getElementById('refundOverlay');
+    if (rOverlay) rOverlay.addEventListener('click', closeRefundPolicyModal);
+});
+
 async function syncAddCategoryToDB(catId, catName, catIcon) {
     try {
         const res = await fetchWithTimeout(`${API_BASE_URL}/categories`, {
