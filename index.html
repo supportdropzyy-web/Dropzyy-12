@@ -1117,6 +1117,128 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- Footer -->
+    <!-- 24/7 Support Activity Modal -->
+    <div class="modal-overlay" id="supportOverlay"></div>
+    <div class="supplier-dashboard-modal" id="supportModal" style="max-width: 680px; width: 92%;">
+        <div class="modal-header" style="border-bottom: 1px solid #E2E8F0; padding-bottom: 14px;">
+            <div>
+                <h3 style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 1.2rem; color: #0F172A;">
+                    <i class="fa-solid fa-headset text-primary"></i> 24/7 Customer Support Activity
+                </h3>
+                <span style="font-size: 0.78rem; color: #059669; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px;">
+                    <i class="fa-solid fa-circle" style="font-size: 0.55rem; color: #10B981;"></i> Support Team Online 24/7
+                </span>
+            </div>
+            <button class="close-modal-btn" onclick="closeSupportModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body" style="padding: 18px 0; max-height: 75vh; overflow-y: auto;">
+            <!-- Support Channel Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px;">
+                <a href="mailto:supportdropzyy@gmail.com" style="text-decoration: none; background: #F0FDF4; border: 1px solid #A7F3D0; padding: 14px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;">
+                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #10B981; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <span style="font-weight: 700; color: #047857; font-size: 0.88rem;">Email Support</span>
+                    <small style="color: #065F46; font-size: 0.75rem; word-break: break-all;">supportdropzyy@gmail.com</small>
+                </a>
+                
+                <a href="tel:+917020447482" style="text-decoration: none; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 14px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;">
+                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #3B82F6; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <span style="font-weight: 700; color: #1E40AF; font-size: 0.88rem;">Helpline Call</span>
+                    <small style="color: #1D4ED8; font-size: 0.75rem;">+91 70204 47482</small>
+                </a>
+
+                <a href="https://wa.me/917020447482?text=Hi%20Dropzyy%20Support,%20I%20need%20help%20with%20my%20order" target="_blank" style="text-decoration: none; background: #ECFDF5; border: 1px solid #6EE7B7; padding: 14px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;">
+                    <div style="width: 42px; height: 42px; border-radius: 50%; background: #059669; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <span style="font-weight: 700; color: #065F46; font-size: 0.88rem;">WhatsApp Chat</span>
+                    <small style="color: #047857; font-size: 0.75rem;">Instant 1-Min Reply</small>
+                </a>
+            </div>
+
+            <!-- Fast Support Request Form -->
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 16px; border-radius: 14px;">
+                <h4 style="margin: 0 0 12px 0; font-size: 0.95rem; color: #1E293B;"><i class="fa-solid fa-paper-plane text-primary"></i> Send Direct Support Inquiry</h4>
+                <form id="supportInquiryForm" onsubmit="submitSupportInquiry(event)">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="supportUserEmail" placeholder="Your Email Address *" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; width: 100%;">
+                        <input type="text" id="supportOrderId" placeholder="Order ID (Optional e.g. #FK-1002)" style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; width: 100%;">
+                    </div>
+                    <textarea id="supportMessage" placeholder="Describe your issue or question here... *" rows="3" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; width: 100%; margin-bottom: 12px;"></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 10px; font-weight: 700;">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Support Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Return & Refund Policy Modal -->
+    <div class="modal-overlay" id="refundOverlay"></div>
+    <div class="supplier-dashboard-modal" id="refundPolicyModal" style="max-width: 720px; width: 92%;">
+        <div class="modal-header" style="border-bottom: 1px solid #E2E8F0; padding-bottom: 14px;">
+            <div>
+                <h3 style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 1.2rem; color: #0F172A;">
+                    <i class="fa-solid fa-rotate-left text-primary"></i> Return & Refund Policy
+                </h3>
+                <span style="font-size: 0.78rem; color: #64748B; margin-top: 4px; display: block;">100% Instant Refund & Replacement Guarantee</span>
+            </div>
+            <button class="close-modal-btn" onclick="closeRefundPolicyModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body" style="padding: 18px 0; max-height: 75vh; overflow-y: auto;">
+            <!-- Policy Highlights Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px;">
+                <div style="background: #F0FDF4; border: 1px solid #A7F3D0; padding: 14px; border-radius: 12px;">
+                    <div style="color: #059669; font-size: 1.4rem; margin-bottom: 6px;"><i class="fa-solid fa-carrot"></i></div>
+                    <h5 style="margin: 0 0 4px 0; color: #047857; font-size: 0.9rem;">Fresh Sabzi & Groceries</h5>
+                    <p style="margin: 0; font-size: 0.78rem; color: #065F46;">24-Hour No-Questions-Asked replacement or instant refund for quality issues.</p>
+                </div>
+
+                <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 14px; border-radius: 12px;">
+                    <div style="color: #2563EB; font-size: 1.4rem; margin-bottom: 6px;"><i class="fa-solid fa-box-open"></i></div>
+                    <h5 style="margin: 0 0 4px 0; color: #1E40AF; font-size: 0.9rem;">Packaged & Staples</h5>
+                    <p style="margin: 0; font-size: 0.78rem; color: #1D4ED8;">7-Day return policy for unopened items with seal intact.</p>
+                </div>
+
+                <div style="background: #FFFBEB; border: 1px solid #FDE68A; padding: 14px; border-radius: 12px;">
+                    <div style="color: #D97706; font-size: 1.4rem; margin-bottom: 6px;"><i class="fa-solid fa-bolt-lightning"></i></div>
+                    <h5 style="margin: 0 0 4px 0; color: #92400E; font-size: 0.9rem;">Instant UPI Refunds</h5>
+                    <p style="margin: 0; font-size: 0.78rem; color: #B45309;">Refunds credited to original payment method or UPI within 1 to 3 hours.</p>
+                </div>
+            </div>
+
+            <!-- Instant Refund Claim Request Section -->
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 16px; border-radius: 14px;">
+                <h4 style="margin: 0 0 12px 0; font-size: 0.95rem; color: #1E293B;"><i class="fa-solid fa-hand-holding-dollar text-primary"></i> Request Instant Return / Refund</h4>
+                <form id="refundClaimForm" onsubmit="submitRefundClaim(event)">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="refundEmail" placeholder="Your Account Email *" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; width: 100%;">
+                        <input type="text" id="refundOrderId" placeholder="Order ID (e.g. #FK-1002) *" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; width: 100%;">
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 10px;">
+                        <select id="refundReason" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; width: 100%; background: #FFFFFF;">
+                            <option value="">-- Select Reason for Return/Refund --</option>
+                            <option value="Damaged Item">Damaged / Expired Product</option>
+                            <option value="Missing Item">Missing Item in Order</option>
+                            <option value="Wrong Item">Wrong Item Delivered</option>
+                            <option value="Quality Concern">Quality Concern (Sabzi/Fruits/Atta)</option>
+                            <option value="Order Cancelled">Order Cancelled Refund</option>
+                        </select>
+                        <input type="text" id="refundUpiId" placeholder="UPI ID for Instant Refund (Optional)" style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; width: 100%;">
+                    </div>
+                    <textarea id="refundDetails" placeholder="Describe item details or issue... *" rows="3" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; width: 100%; margin-bottom: 12px;"></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 10px; font-weight: 700; background: #059669; border-color: #059669;">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Return / Refund Claim
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Footer -->
     <footer class="main-footer">
         <div class="container footer-grid">
             <div class="footer-col brand-col">
@@ -1127,7 +1249,7 @@
                 <div class="social-links">
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://wa.me/917020447482" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="#"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
@@ -1144,9 +1266,9 @@
                 <h4>Customer Support</h4>
                 <ul>
                     <li><a href="mailto:supportdropzyy@gmail.com" style="color: #FFFFFF; font-weight: 600;"><i class="fa-solid fa-envelope text-primary"></i> supportdropzyy@gmail.com</a></li>
-                    <li><a href="#" onclick="openBookingTrackingModal()">Track Live Order</a></li>
-                    <li><a href="#">24/7 Support Activity</a></li>
-                    <li><a href="#">Return & Refund Policy</a></li>
+                    <li><a href="#" onclick="openBookingTrackingModal(); return false;"><i class="fa-solid fa-truck-fast"></i> Track Live Order</a></li>
+                    <li><a href="#" onclick="openSupportModal(); return false;"><i class="fa-solid fa-headset"></i> 24/7 Support Activity</a></li>
+                    <li><a href="#" onclick="openRefundPolicyModal(); return false;"><i class="fa-solid fa-rotate-left"></i> Return & Refund Policy</a></li>
                 </ul>
             </div>
             <div class="footer-col">
